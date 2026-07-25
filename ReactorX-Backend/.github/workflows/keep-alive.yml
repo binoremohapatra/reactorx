@@ -2,8 +2,8 @@ name: Keep Backend Alive
 
 on:
   schedule:
-    # Runs every 14 minutes
-    - cron: '*/14 * * * *'
+    # Runs every 8 minutes to account for GitHub Actions scheduling delays
+    - cron: '*/8 * * * *'
   workflow_dispatch: # Allows manual trigger
 
 jobs:
@@ -11,5 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Health Endpoint
-        run: curl -s -o /dev/null -w "%{http_code}" https://reactorx-backend.onrender.com/api/health
+        run: curl -s -o /dev/null -w "%{http_code}" https://reactorx.onrender.com/api/health
         # NOTE: Replace the URL with your actual backend URL if it's different.
